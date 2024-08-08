@@ -1,52 +1,65 @@
 package com.hideki.pawnshopSystem.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.*;
 
-import java.util.Date;
-import java.util.HashMap;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Entity
+@Table(name = "pawn")
 public class Pawn {
     @Id
-    public String id;
-    private Float principal;
-    private Date startDate;
-    private Date endDate;
-    private HashMap<Integer, Item> itemList;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Integer idPawn;
+    private String pawnTicketID;
+    private BigDecimal principal;
+    private LocalDate startDate;
+    private LocalDate endDate;
 
-    public Pawn() {
+    @JsonCreator
+    public Pawn(@JsonProperty("principal") BigDecimal principal){
+        this.principal=principal;
+        this.startDate=LocalDate.now();
     }
 
-    public Float getPrincipal() {
+    public Pawn(String pawnTicketID, BigDecimal principal, LocalDate startDate) {
+        this.pawnTicketID=pawnTicketID;
+        this.principal=principal;
+        this.startDate=startDate;
+        this.endDate=startDate.plusMonths(3);
+    }
+
+    public String getPawnTicketID() {
+        return pawnTicketID;
+    }
+
+    public void setPawnTicketID(String pawnTicketID) {
+        this.pawnTicketID = pawnTicketID;
+    }
+
+    public BigDecimal getPrincipal() {
         return principal;
     }
 
-    public void setPrincipal(Float principal) {
+    public void setPrincipal(BigDecimal principal) {
         this.principal = principal;
     }
 
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
-    }
-
-    public HashMap<Integer, Item> getItemList() {
-        return itemList;
-    }
-
-    public void setItemList(HashMap<Integer, Item> itemList) {
-        this.itemList = itemList;
     }
 }
