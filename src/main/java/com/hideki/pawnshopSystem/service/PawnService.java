@@ -4,8 +4,12 @@ import com.hideki.pawnshopSystem.model.Pawn;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
 
 public interface PawnService {
-    Pawn createPawn(BigDecimal principal, LocalDate startDate);
-    String generatePawnTicketID();
+    public Pawn createPawn(BigDecimal principal, LocalDate startDate);
+    public String generatePawnTicketID();
+    public List<Pawn> getAllPawn();
+    public Optional<Pawn> getPawnByID(Integer id);
 }

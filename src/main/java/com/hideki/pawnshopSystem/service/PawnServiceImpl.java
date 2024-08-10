@@ -2,11 +2,15 @@ package com.hideki.pawnshopSystem.service;
 
 import com.hideki.pawnshopSystem.model.Pawn;
 import com.hideki.pawnshopSystem.repository.PawnRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PawnServiceImpl implements PawnService{
@@ -56,5 +60,16 @@ public class PawnServiceImpl implements PawnService{
 //        if pawnticket number is less than 999,999
         return finalPawnTicketLetters + String.valueOf(pawnTicketNumber);
 
+    }
+
+    @Override
+    public List<Pawn> getAllPawn() {
+        Sort sortingMethod = Sort.by(Sort.Direction.DESC, "startDate");
+        return pawnRepository.findAll(sortingMethod);
+    }
+
+    @Override
+    public Optional<Pawn> getPawnByID(Integer id) {
+        return pawnRepository.findById(id);
     }
 }
