@@ -17,8 +17,8 @@ public class PawnController {
     @Autowired
     private PawnService pawnService;
 
-    @PostMapping("/create")
-    public ResponseEntity<ApiResponse<?>> create(@RequestBody Pawn pawn){
+    @PostMapping("/add")
+    public ResponseEntity<ApiResponse<?>> add(@RequestBody Pawn pawn){
         try {
             Pawn newPawn = pawnService.createPawn(pawn.getPrincipal(), pawn.getStartDate());
             return ResponseEntity.status(HttpStatus.CREATED).body(new ApiResponse<Pawn>("Successfully created pawn",newPawn));

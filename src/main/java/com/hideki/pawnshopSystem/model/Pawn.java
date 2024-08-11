@@ -14,9 +14,15 @@ public class Pawn {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer idPawn;
     private String pawnTicketID;
+    private BigDecimal interest;
     private BigDecimal principal;
     private LocalDate startDate;
     private LocalDate endDate;
+
+
+    @OneToOne
+    @JoinColumn(name = "idTransaction",nullable = false)
+    private Transaction transaction;
 
     @JsonCreator
     public Pawn(@JsonProperty("principal") BigDecimal principal){
@@ -61,5 +67,21 @@ public class Pawn {
 
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
+    }
+
+    public BigDecimal getInterest() {
+        return interest;
+    }
+
+    public void setInterest(BigDecimal interest) {
+        this.interest = interest;
+    }
+
+    public Transaction getTransaction() {
+        return transaction;
+    }
+
+    public void setTransaction(Transaction transaction) {
+        this.transaction = transaction;
     }
 }

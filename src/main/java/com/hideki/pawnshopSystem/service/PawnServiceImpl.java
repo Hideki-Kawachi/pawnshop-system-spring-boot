@@ -38,10 +38,10 @@ public class PawnServiceImpl implements PawnService{
         String finalPawnTicketLetters = pawnTicketSplit[0];
 //        if pawnticket number is greater than 999,999
         if(pawnTicketNumber>=1000000){
-//            Go through pawnticket letters to check if need to be incremented
-            for (int letterIndex = pawnTicketLetters.length-1; letterIndex > 0; letterIndex--) {
+//            Go through pawnticket letters to check if it needs to be incremented
+            for (int letterIndex = pawnTicketLetters.length-1; letterIndex >= 0; letterIndex--) {
 //                if reached end of letters but all are Z
-                if(letterIndex<0){
+                if(letterIndex==0){
 //                    create a new pawnticket letter string that contains a new letter but all are A
                     finalPawnTicketLetters = "A".repeat(pawnTicketLetters.length);
                     break;
