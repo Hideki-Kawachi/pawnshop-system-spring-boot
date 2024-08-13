@@ -14,4 +14,5 @@ public interface PawnService {
     public String generatePawnTicketID();
     public List<Pawn> getAllPawn();
     public Optional<Pawn> getPawnByID(Integer id);
+
 }

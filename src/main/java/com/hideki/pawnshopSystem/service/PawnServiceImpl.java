@@ -60,7 +60,6 @@ public class PawnServiceImpl implements PawnService{
             }
 
         }
-
 //        if pawnticket number is less than 999,999
         return finalPawnTicketLetters + String.valueOf(pawnTicketNumber);
 
