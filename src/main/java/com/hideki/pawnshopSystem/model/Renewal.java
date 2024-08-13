@@ -13,11 +13,11 @@ public class Renewal {
     public Integer idRenewal;
 
     @OneToOne
-    @JoinColumn(name = "idPawn",referencedColumnName = "originalPawn")
+    @JoinColumn(name = "originalPawn",referencedColumnName = "idPawn")
     private Pawn originalPawn;
 
     @OneToOne
-    @JoinColumn(name = "idPawn",referencedColumnName = "newPawn")
+    @JoinColumn(name = "newPawn",referencedColumnName = "idPawn")
     private Pawn newPawn;
 
     private LocalDate renewalDate;

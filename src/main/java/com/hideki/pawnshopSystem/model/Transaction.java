@@ -25,11 +25,11 @@ public class Transaction {
     private Renewal renewal;
 
     @OneToOne
-    @JoinColumn(name = "idUser",referencedColumnName = "idCustomer")
+    @JoinColumn(name = "idCustomer",referencedColumnName = "idUser")
     private User customer;
 
     @OneToOne
-    @JoinColumn(name = "idUser",referencedColumnName = "idClerk")
+    @JoinColumn(name = "idClerk",referencedColumnName = "idUser")
     private User clerk;
 
 //    constructor for pawn

@@ -21,9 +21,10 @@ public class User {
     private String password;
     private UserType type;
 
-    public User(String lastName, String firstName, LocalDate birthDate, String email, String password, UserType type) {
+    public User( String firstName, String middleName, String lastName, Sex sex, LocalDate birthDate, String email, String password, UserType type) {
         this.lastName = lastName;
         this.firstName = firstName;
+        this.middleName = middleName;
         this.birthDate = birthDate;
         this.email = email;
         this.password = password;

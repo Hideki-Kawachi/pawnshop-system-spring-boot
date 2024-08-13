@@ -1,5 +1,6 @@
 package com.hideki.pawnshopSystem.controller;
 
+import com.hideki.pawnshopSystem.dto.PawnDTO;
 import com.hideki.pawnshopSystem.model.Pawn;
 import com.hideki.pawnshopSystem.service.PawnService;
 import com.hideki.pawnshopSystem.shared.ApiResponse;
@@ -18,10 +19,11 @@ public class PawnController {
     private PawnService pawnService;
 
     @PostMapping("/add")
-    public ResponseEntity<ApiResponse<?>> add(@RequestBody Pawn pawn){
+    public ResponseEntity<ApiResponse<?>> add(@RequestBody PawnDTO pawnRequest){
         try {
-            Pawn newPawn = pawnService.createPawn(pawn.getPrincipal(), pawn.getStartDate());
-            return ResponseEntity.status(HttpStatus.CREATED).body(new ApiResponse<Pawn>("Successfully created pawn",newPawn));
+
+            PawnDTO newPawnDTO = pawnService.createPawn(pawnRequest.principal(), pawnRequest.startDate());
+            return ResponseEntity.status(HttpStatus.CREATED).body(new ApiResponse<PawnDTO>("Successfully created pawn",newPawnDTO));
         }
         catch (Exception e){
             ApiResponse<?> response = new ApiResponse<>("Error while creating the pawn: " + e.getMessage());

@@ -24,12 +24,13 @@ public class Pawn {
     @JoinColumn(name = "idTransaction",nullable = false)
     private Transaction transaction;
 
-    @JsonCreator
-    public Pawn(@JsonProperty("principal") BigDecimal principal){
-        this.principal=principal;
-        this.startDate=LocalDate.now();
-    }
+//    @JsonCreator
+//    public Pawn(@JsonProperty("principal") BigDecimal principal){
+//        this.principal=principal;
+//        this.startDate=LocalDate.now();
+//    }
 
+//    To Do: Add creation of transaction
     public Pawn(String pawnTicketID, BigDecimal principal, LocalDate startDate) {
         this.pawnTicketID=pawnTicketID;
         this.principal=principal;

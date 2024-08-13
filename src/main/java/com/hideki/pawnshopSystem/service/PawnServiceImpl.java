@@ -1,5 +1,7 @@
 package com.hideki.pawnshopSystem.service;
 
+import com.hideki.pawnshopSystem.dto.PawnDTO;
+import com.hideki.pawnshopSystem.dto.PawnDTOMapper;
 import com.hideki.pawnshopSystem.model.Pawn;
 import com.hideki.pawnshopSystem.repository.PawnRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -18,10 +20,12 @@ public class PawnServiceImpl implements PawnService{
     @Autowired
     private PawnRepository pawnRepository;
 
+    private PawnDTOMapper pawnDTOMapper;
+
     @Override
-    public Pawn createPawn(BigDecimal principal, LocalDate startDate) {
+    public PawnDTO createPawn(BigDecimal principal, LocalDate startDate) {
         String pawnTicketID = generatePawnTicketID();
-        return pawnRepository.save(new Pawn(pawnTicketID, principal, startDate));
+        return pawnDTOMapper.apply(pawnRepository.save(new Pawn(pawnTicketID, principal, startDate)));
     }
 
     @Override
