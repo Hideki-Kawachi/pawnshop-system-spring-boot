@@ -9,6 +9,7 @@ import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
@@ -60,11 +61,11 @@ public class JwtServiceImpl implements JwtService{
     }
 
     @Override
-    public String generateToken(Map<String, Object> extraClaims, UserRequestDTO userRequest) {
+    public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
         return Jwts
                 .builder()
                 .claims(extraClaims)
-                .subject(userRequest.email())
+                .subject(userDetails.getUsername())
                 .issuedAt(new Date(System.currentTimeMillis()))
                 .expiration(new Date(System.currentTimeMillis() * 60))
                 .signWith(getSignInKey())
@@ -72,14 +73,14 @@ public class JwtServiceImpl implements JwtService{
     }
 
     @Override
-    public String generateToken(UserRequestDTO userRequest) {
-        return generateToken(new HashMap<>(), userRequest);
+    public String generateToken(UserDetails userDetails) {
+        return generateToken(new HashMap<>(), userDetails);
     }
 
     @Override
-    public boolean isTokenValid(String token, UserRequestDTO userRequestDTO) {
+    public boolean isTokenValid(String token, UserDetails userDetails) {
         final String extractedEmail = extractUsernameEmail(token);
-        return (extractedEmail.equals(userRequestDTO.email())) && !isTokenExpired(token);
+        return (extractedEmail.equals(userDetails.getUsername())) && !isTokenExpired(token);
     }
 
     @Override
