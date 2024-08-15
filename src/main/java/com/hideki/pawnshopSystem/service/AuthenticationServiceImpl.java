@@ -12,17 +12,19 @@ import org.springframework.stereotype.Service;
 @Service
 public class AuthenticationServiceImpl implements AuthenticationService{
 
-    @Autowired
-    private PasswordHashService passwordHashService;
 
-    @Autowired
-    private UserRepository userRepository;
+//    instead of autowired, do constructor based injection
+    private final PasswordHashService passwordHashService;
+    private final UserRepository userRepository;
+    private final JwtService jwtService;
+    private final AuthenticationManager authenticationManager;
 
-    @Autowired
-    private JwtService jwtService;
-
-    @Autowired
-    private AuthenticationManager authenticationManager;
+    public AuthenticationServiceImpl(PasswordHashService passwordHashService, UserRepository userRepository, JwtService jwtService, AuthenticationManager authenticationManager) {
+        this.passwordHashService = passwordHashService;
+        this.userRepository = userRepository;
+        this.jwtService = jwtService;
+        this.authenticationManager = authenticationManager;
+    }
 
 
     @Override
