@@ -1,6 +1,5 @@
 package com.hideki.pawnshopSystem.config;
 
-import com.hideki.pawnshopSystem.dto.UserRequestDTO;
 import com.hideki.pawnshopSystem.service.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

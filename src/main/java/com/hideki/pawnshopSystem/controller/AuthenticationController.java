@@ -1,7 +1,6 @@
 package com.hideki.pawnshopSystem.controller;
 
 import com.hideki.pawnshopSystem.dto.TokenDTO;
-import com.hideki.pawnshopSystem.dto.UserDTO;
 import com.hideki.pawnshopSystem.dto.UserRequestDTO;
 import com.hideki.pawnshopSystem.service.AuthenticationService;
 import com.hideki.pawnshopSystem.shared.ApiResponse;
