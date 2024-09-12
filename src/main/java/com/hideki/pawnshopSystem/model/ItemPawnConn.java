@@ -1,13 +1,16 @@
 package com.hideki.pawnshopSystem.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 @Entity
+@Data
 @Table(name = "itemPawnConn")
 public class ItemPawnConn {
     @Id
     @Column(name = "idItemPawnConn")
     public Integer idItemPawnConn;
+
 
     @OneToOne
     @JoinColumn(name = "idPawn",referencedColumnName = "idPawn")
@@ -22,19 +25,4 @@ public class ItemPawnConn {
         this.item = item;
     }
 
-    public Pawn getPawn() {
-        return pawn;
-    }
-
-    public void setPawn(Pawn pawn) {
-        this.pawn = pawn;
-    }
-
-    public Item getItem() {
-        return item;
-    }
-
-    public void setItem(Item item) {
-        this.item = item;
-    }
 }

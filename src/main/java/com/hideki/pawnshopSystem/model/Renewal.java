@@ -1,10 +1,12 @@
 package com.hideki.pawnshopSystem.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+@Data
 @Entity
 @Table(name = "renewal")
 public class Renewal {
@@ -24,7 +26,7 @@ public class Renewal {
     private BigDecimal payment;
     private BigDecimal interest;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "idTransaction")
     private Transaction transaction;
 
@@ -36,51 +38,4 @@ public class Renewal {
         this.interest = interest;
     }
 
-    public Pawn getOriginalPawn() {
-        return originalPawn;
-    }
-
-    public void setOriginalPawn(Pawn originalPawn) {
-        this.originalPawn = originalPawn;
-    }
-
-    public Pawn getNewPawn() {
-        return newPawn;
-    }
-
-    public void setNewPawn(Pawn newPawn) {
-        this.newPawn = newPawn;
-    }
-
-    public LocalDate getRenewalDate() {
-        return renewalDate;
-    }
-
-    public void setRenewalDate(LocalDate renewalDate) {
-        this.renewalDate = renewalDate;
-    }
-
-    public BigDecimal getPayment() {
-        return payment;
-    }
-
-    public void setPayment(BigDecimal payment) {
-        this.payment = payment;
-    }
-
-    public BigDecimal getInterest() {
-        return interest;
-    }
-
-    public void setInterest(BigDecimal interest) {
-        this.interest = interest;
-    }
-
-    public Transaction getTransaction() {
-        return transaction;
-    }
-
-    public void setTransaction(Transaction transaction) {
-        this.transaction = transaction;
-    }
 }

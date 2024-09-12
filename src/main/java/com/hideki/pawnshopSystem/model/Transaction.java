@@ -3,9 +3,11 @@ package com.hideki.pawnshopSystem.model;
 
 import com.hideki.pawnshopSystem.enums.TransactionType;
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.math.BigDecimal;
 
+@Data
 @Entity
 @Table(name="transaction")
 public class Transaction {
@@ -64,45 +66,5 @@ public class Transaction {
         this.type=type;
         this.netAmount=netAmount;
         this.clerk=clerk;
-    }
-
-    public Pawn getPawn() {
-        return pawn;
-    }
-
-    public void setPawn(Pawn pawn) {
-        this.pawn = pawn;
-    }
-
-    public User getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(User customer) {
-        this.customer = customer;
-    }
-
-    public User getClerk() {
-        return clerk;
-    }
-
-    public void setClerk(User clerk) {
-        this.clerk = clerk;
-    }
-
-    public TransactionType getType() {
-        return type;
-    }
-
-    public void setType(TransactionType type) {
-        this.type = type;
-    }
-
-    public BigDecimal getNetAmount() {
-        return netAmount;
-    }
-
-    public void setNetAmount(BigDecimal netAmount) {
-        this.netAmount = netAmount;
     }
 }

@@ -4,9 +4,11 @@ import com.hideki.pawnshopSystem.enums.ItemStatus;
 import com.hideki.pawnshopSystem.enums.ItemType;
 import com.hideki.pawnshopSystem.enums.MaterialType;
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.math.BigDecimal;
 
+@Data
 @Entity
 @Table(name = "item")
 public class Item {
@@ -23,83 +25,6 @@ public class Item {
     private String description;
     private BigDecimal pawnPrice;
     private ItemStatus status;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public ItemType getType() {
-        return type;
-    }
-
-    public void setType(ItemType type) {
-        this.type = type;
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
-    public Float getWeight() {
-        return weight;
-    }
-
-    public void setWeight(Float weight) {
-        this.weight = weight;
-    }
-
-    public Integer getPurity() {
-        return purity;
-    }
-
-    public void setPurity(Integer purity) {
-        this.purity = purity;
-    }
-
-    public MaterialType getMaterial() {
-        return material;
-    }
-
-    public void setMaterial(MaterialType material) {
-        this.material = material;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public BigDecimal getPawnPrice() {
-        return pawnPrice;
-    }
-
-    public void setPawnPrice(BigDecimal pawnPrice) {
-        this.pawnPrice = pawnPrice;
-    }
-
-    public ItemStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(ItemStatus status) {
-        this.status = status;
-    }
+    private Integer idBranch;
+    private String imageLink;
 }
