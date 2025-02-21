@@ -2,17 +2,17 @@ package com.hideki.pawnshopSystem.service;
 
 import com.hideki.pawnshopSystem.dto.TokenDTO;
 import com.hideki.pawnshopSystem.dto.UserRequestDTO;
-import com.hideki.pawnshopSystem.model.User;
+import com.hideki.pawnshopSystem.model.AppUser;
 import com.hideki.pawnshopSystem.repository.UserRepository;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AuthenticationService{
+public class AuthenticationService {
 
 
-//    instead of autowired, do constructor based injection
+    //    instead of autowired, do constructor based injection
     private final PasswordHashService passwordHashService;
     private final UserRepository userRepository;
     private final JwtService jwtService;
@@ -26,9 +26,8 @@ public class AuthenticationService{
     }
 
 
-
     public TokenDTO register(UserRequestDTO userRequest) {
-        User newUser = User.builder()
+        AppUser newUser = AppUser.builder()
                 .firstName(userRequest.firstName())
                 .middleName(userRequest.middleName())
                 .lastName(userRequest.lastName())
@@ -49,8 +48,8 @@ public class AuthenticationService{
                 userRequestDTO.email(),
                 userRequestDTO.password()
         ));
-        User user = userRepository.findByEmail(userRequestDTO.email());
-        if(user != null){
+        AppUser user = userRepository.findByEmail(userRequestDTO.email());
+        if (user != null) {
             String jwtToken = jwtService.generateToken(user);
             return new TokenDTO(jwtToken);
         }

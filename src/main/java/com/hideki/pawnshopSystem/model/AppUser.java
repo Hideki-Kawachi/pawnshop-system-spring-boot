@@ -14,18 +14,19 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "user")
-public class User implements UserDetails {
+@Table(name = "appUser")
+public class AppUser implements UserDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "idUser")
-    public Integer idUser;
+    public UUID idUser;
     private String firstName;
     private String middleName;
     private String lastName;
@@ -39,7 +40,7 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private UserType type;
 
-    public User( String firstName, String middleName, String lastName, Sex sex, LocalDate birthDate, String email, String password, UserType type) {
+    public AppUser(String firstName, String middleName, String lastName, Sex sex, LocalDate birthDate, String email, String password, UserType type) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.middleName = middleName;

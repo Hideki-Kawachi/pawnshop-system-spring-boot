@@ -2,29 +2,28 @@ package com.hideki.pawnshopSystem.model;
 
 import com.hideki.pawnshopSystem.enums.ItemStatus;
 import com.hideki.pawnshopSystem.enums.ItemType;
-import com.hideki.pawnshopSystem.enums.MaterialType;
+import com.hideki.pawnshopSystem.enums.Purity;
 import jakarta.persistence.*;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 @Data
 @Entity
 @Table(name = "item")
 public class Item {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Integer idItem;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public UUID idItem;
     private String name;
     private ItemType type;
-    private String brand;
-    private String model;
-    private Float weight;
-    private Integer purity;
-    private MaterialType material;
+    private BigDecimal weight;
+    private Purity purity;
     private String description;
+    private String imageSrc;
     private BigDecimal pawnPrice;
     private ItemStatus status;
-    private Integer idBranch;
-    private String imageLink;
+    private UUID idBranch;
+
 }

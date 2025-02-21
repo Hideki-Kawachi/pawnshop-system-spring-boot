@@ -1,8 +1,8 @@
 package com.hideki.pawnshopSystem.repository;
 
-import com.hideki.pawnshopSystem.model.User;
+import com.hideki.pawnshopSystem.model.AppUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<User, Integer> {
-    User findByEmail(String email);
+public interface UserRepository extends JpaRepository<AppUser, Integer> {
+    AppUser findByEmail(String email);
 }
