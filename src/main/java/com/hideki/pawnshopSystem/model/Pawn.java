@@ -1,20 +1,19 @@
 package com.hideki.pawnshopSystem.model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Data
 @Entity
 @Table(name = "pawn")
 public class Pawn {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Integer idPawn;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public UUID idPawn;
     private String pawnTicketID;
     private BigDecimal interest;
     private BigDecimal principal;
@@ -23,7 +22,7 @@ public class Pawn {
 
 
     @ManyToOne
-    @JoinColumn(name = "idTransaction",nullable = false)
+    @JoinColumn(name = "idTransaction", nullable = false)
     private Transaction transaction;
 
 //    @JsonCreator
@@ -32,12 +31,12 @@ public class Pawn {
 //        this.startDate=LocalDate.now();
 //    }
 
-//    To Do: Add creation of transaction
+    //    To Do: Add creation of transaction
     public Pawn(String pawnTicketID, BigDecimal principal, LocalDate startDate) {
-        this.pawnTicketID=pawnTicketID;
-        this.principal=principal;
-        this.startDate=startDate;
-        this.endDate=startDate.plusMonths(3);
+        this.pawnTicketID = pawnTicketID;
+        this.principal = principal;
+        this.startDate = startDate;
+        this.endDate = startDate.plusMonths(3);
     }
 
 }

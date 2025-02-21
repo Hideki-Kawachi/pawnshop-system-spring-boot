@@ -1,14 +1,14 @@
 package com.hideki.pawnshopSystem.dto;
 
-import com.hideki.pawnshopSystem.model.User;
+import com.hideki.pawnshopSystem.model.AppUser;
 import org.springframework.stereotype.Service;
 
 import java.util.function.Function;
 
 @Service
-public class UserRequestDTOMapper implements Function<User, UserRequestDTO> {
+public class UserRequestDTOMapper implements Function<AppUser, UserRequestDTO> {
     @Override
-    public UserRequestDTO apply(User user){
+    public UserRequestDTO apply(AppUser user) {
         return new UserRequestDTO(user.idUser,
                 user.getFirstName(),
                 user.getMiddleName(),

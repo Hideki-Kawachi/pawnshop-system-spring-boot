@@ -1,7 +1,14 @@
 Spring-boot application for a pawnshop transaction system
 
 Built using:
+
 - Spring Boot
 - Java 22
-- MySQL 8.0
+- Postgres 16.7
 - Maven
+- Flyway
+- JPA
+- Hibernate
+- Lombok
+- Spring Security
+- 

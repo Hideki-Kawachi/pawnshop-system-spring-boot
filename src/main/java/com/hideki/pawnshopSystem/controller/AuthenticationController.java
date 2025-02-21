@@ -22,7 +22,6 @@ public class AuthenticationController {
     @PostMapping("/register")
     public ResponseEntity<ApiResponse<?>> register(@RequestBody UserRequestDTO userRequest){
         try{
-            System.out.println("HELLO FROM INSIDE!");
             ApiResponse<TokenDTO> response = new ApiResponse<>("Successfully registered user", authenticationService.register(userRequest));
             return ResponseEntity.status(HttpStatus.CREATED).body(response);
         }

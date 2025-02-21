@@ -6,14 +6,15 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 @Data
 @Entity
-@Table(name="transaction")
+@Table(name = "transaction")
 public class Transaction {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Integer idTransaction;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public UUID idTransaction;
     private TransactionType type;
     private BigDecimal netAmount;
 
@@ -27,44 +28,52 @@ public class Transaction {
     private Renewal renewal;
 
     @OneToOne
-    @JoinColumn(name = "idCustomer",referencedColumnName = "idUser")
-    private User customer;
+    @JoinColumn(name = "idCustomer", referencedColumnName = "idUser")
+    private AppUser customer;
 
     @OneToOne
-    @JoinColumn(name = "idClerk",referencedColumnName = "idUser")
-    private User clerk;
+    @JoinColumn(name = "idClerk", referencedColumnName = "idUser")
+    private AppUser clerk;
 
-//    constructor for pawn
-    public Transaction(Pawn pawn, User clerk, User customer){
-        this.type=TransactionType.PAWN;
-        this.netAmount=pawn.getPrincipal().subtract(pawn.getInterest()).negate();
-        this.customer=customer;
-        this.clerk=clerk;
-        this.pawn=pawn;
+    @OneToOne
+    @JoinColumn(name = "idBranchManager", referencedColumnName = "idUser")
+    private AppUser branchManager;
+
+    //    constructor for pawn
+    public Transaction(Pawn pawn, AppUser clerk, AppUser customer, AppUser branchManager) {
+        this.type = TransactionType.PAWN;
+        this.netAmount = pawn.getPrincipal().subtract(pawn.getInterest()).negate();
+        this.customer = customer;
+        this.clerk = clerk;
+        this.pawn = pawn;
+        this.branchManager = branchManager;
     }
 
-//    constructor for redemption
-    public Transaction(Redemption redemption, User clerk, User customer){
-        this.type=TransactionType.REDEMPTION;
-        this.netAmount=redemption.getPayment();
-        this.customer=customer;
-        this.clerk=clerk;
-        this.redemption=redemption;
+    //    constructor for redemption
+    public Transaction(Redemption redemption, AppUser clerk, AppUser customer, AppUser branchManager) {
+        this.type = TransactionType.REDEMPTION;
+        this.netAmount = redemption.getPayment();
+        this.customer = customer;
+        this.clerk = clerk;
+        this.redemption = redemption;
+        this.branchManager = branchManager;
     }
 
-//    constructor for redemption
-    public Transaction(Renewal renewal, User clerk, User customer){
-        this.type=TransactionType.RENEWAL;
-        this.netAmount=renewal.getPayment();
-        this.customer=customer;
-        this.clerk=clerk;
-        this.renewal=renewal;
+    //    constructor for renewal
+    public Transaction(Renewal renewal, AppUser clerk, AppUser customer, AppUser branchManager) {
+        this.type = TransactionType.RENEWAL;
+        this.netAmount = renewal.getPayment();
+        this.customer = customer;
+        this.clerk = clerk;
+        this.renewal = renewal;
+        this.branchManager = branchManager;
     }
 
-//    constructor for other transaction
-    public Transaction(TransactionType type, BigDecimal netAmount, User clerk){
-        this.type=type;
-        this.netAmount=netAmount;
-        this.clerk=clerk;
+    //    constructor for other transaction
+    public Transaction(TransactionType type, BigDecimal netAmount, AppUser clerk, AppUser branchManager) {
+        this.type = type;
+        this.netAmount = netAmount;
+        this.clerk = clerk;
+        this.branchManager = branchManager;
     }
 }
