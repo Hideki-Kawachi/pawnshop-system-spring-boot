@@ -14,22 +14,25 @@ public class Pawn {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public UUID idPawn;
+
+    @Column(nullable = false)
     private String pawnTicketID;
-    private BigDecimal interest;
+
+    @Column(nullable = false)
     private BigDecimal principal;
+
+    @Column(nullable = false)
     private LocalDate startDate;
+
+    @Column(nullable = false)
     private LocalDate endDate;
 
+    @Column(nullable = false)
+    private boolean isOriginal;
 
-    @ManyToOne
-    @JoinColumn(name = "idTransaction", nullable = false)
+    @OneToOne(mappedBy = "pawn")
     private Transaction transaction;
 
-//    @JsonCreator
-//    public Pawn(@JsonProperty("principal") BigDecimal principal){
-//        this.principal=principal;
-//        this.startDate=LocalDate.now();
-//    }
 
     //    To Do: Add creation of transaction
     public Pawn(String pawnTicketID, BigDecimal principal, LocalDate startDate) {

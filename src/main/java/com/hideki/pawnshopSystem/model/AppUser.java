@@ -12,6 +12,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
@@ -25,11 +26,17 @@ import java.util.UUID;
 public class AppUser implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "idUser")
-    public UUID idUser;
+    @Column(name = "idAppUser")
+    public UUID idAppUser;
+
+    @Column(nullable = false)
     private String firstName;
     private String middleName;
+
+    @Column(nullable = false)
     private String lastName;
+
+    @Column(nullable = false)
     private LocalDate birthDate;
     private String email;
     private String password;
@@ -38,7 +45,14 @@ public class AppUser implements UserDetails {
     private Sex sex;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private UserType type;
+
+    @Column(nullable = false)
+    private LocalDateTime createdOn;
+    
+    @Column(nullable = false)
+    private Boolean isActive;
 
     public AppUser(String firstName, String middleName, String lastName, Sex sex, LocalDate birthDate, String email, String password, UserType type) {
         this.lastName = lastName;

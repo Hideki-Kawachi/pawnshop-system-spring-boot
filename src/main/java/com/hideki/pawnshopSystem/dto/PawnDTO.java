@@ -7,7 +7,6 @@ import java.util.UUID;
 public record PawnDTO(
         UUID idPawn,
         String pawnTicketID,
-        BigDecimal interest,
         BigDecimal principal,
         LocalDate startDate,
         LocalDate endDate

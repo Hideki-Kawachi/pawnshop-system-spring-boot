@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
@@ -16,15 +17,19 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.AUTO)
     public UUID idTransaction;
     private TransactionType type;
+    @Column(nullable = false)
     private BigDecimal netAmount;
 
-    @OneToOne(mappedBy = "transaction")
+    @OneToOne
+    @JoinColumn(name = "idPawn", referencedColumnName = "idPawn")
     private Pawn pawn;
 
-    @OneToOne(mappedBy = "transaction")
+    @OneToOne
+    @JoinColumn(name = "idRedemption", referencedColumnName = "idRedemption")
     private Redemption redemption;
-
-    @OneToOne(mappedBy = "transaction")
+    
+    @OneToOne
+    @JoinColumn(name = "idRenewal", referencedColumnName = "idRenewal")
     private Renewal renewal;
 
     @OneToOne
@@ -39,10 +44,19 @@ public class Transaction {
     @JoinColumn(name = "idBranchManager", referencedColumnName = "idUser")
     private AppUser branchManager;
 
+    @ManyToOne
+    @JoinColumn(name = "idBranch", referencedColumnName = "idBranch")
+    private Branch branch;
+
+    private String comments;
+
+    @Column(nullable = false)
+    private LocalDateTime createdOn;
+
     //    constructor for pawn
     public Transaction(Pawn pawn, AppUser clerk, AppUser customer, AppUser branchManager) {
         this.type = TransactionType.PAWN;
-        this.netAmount = pawn.getPrincipal().subtract(pawn.getInterest()).negate();
+//        this.netAmount = pawn.getPrincipal().subtract(pawn.getInterest()).negate();
         this.customer = customer;
         this.clerk = clerk;
         this.pawn = pawn;

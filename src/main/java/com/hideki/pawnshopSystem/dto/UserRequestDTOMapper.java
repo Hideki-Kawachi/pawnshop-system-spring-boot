@@ -9,7 +9,7 @@ import java.util.function.Function;
 public class UserRequestDTOMapper implements Function<AppUser, UserRequestDTO> {
     @Override
     public UserRequestDTO apply(AppUser user) {
-        return new UserRequestDTO(user.idUser,
+        return new UserRequestDTO(user.idAppUser,
                 user.getFirstName(),
                 user.getMiddleName(),
                 user.getLastName(),

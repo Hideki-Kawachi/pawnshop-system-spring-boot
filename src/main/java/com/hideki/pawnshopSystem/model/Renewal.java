@@ -16,19 +16,32 @@ public class Renewal {
     public UUID idRenewal;
 
     @OneToOne
-    @JoinColumn(name = "originalPawn", referencedColumnName = "idPawn")
+    @JoinColumn(name = "idOriginalPawn", referencedColumnName = "idPawn")
     private Pawn originalPawn;
 
     @OneToOne
-    @JoinColumn(name = "newPawn", referencedColumnName = "idPawn")
+    @JoinColumn(name = "idNewPawn", referencedColumnName = "idPawn")
     private Pawn newPawn;
 
+    @Column(nullable = false)
     private LocalDateTime renewalDate;
+    
+    @Column(nullable = false)
     private BigDecimal payment;
+
+    @Column(nullable = false)
     private BigDecimal interest;
 
-    @ManyToOne
-    @JoinColumn(name = "idTransaction")
+    @Column(nullable = false)
+    private BigDecimal penalty;
+
+    @Column(nullable = false)
+    private BigDecimal addFees;
+
+    @Column(nullable = false)
+    private BigDecimal discount;
+
+    @OneToOne(mappedBy = "renewal")
     private Transaction transaction;
 
     public Renewal(Pawn originalPawn, Pawn newPawn, LocalDateTime renewalDate, BigDecimal payment, BigDecimal interest) {

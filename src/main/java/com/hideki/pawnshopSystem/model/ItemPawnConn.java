@@ -13,7 +13,6 @@ public class ItemPawnConn {
     @Column(name = "idItemPawnConn")
     public UUID idItemPawnConn;
 
-
     @OneToOne
     @JoinColumn(name = "idPawn", referencedColumnName = "idPawn")
     private Pawn pawn;

@@ -16,14 +16,28 @@ public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public UUID idItem;
+
+    @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false)
     private ItemType type;
+
+    @Column(nullable = false)
     private BigDecimal weight;
+
     private Purity purity;
     private String description;
     private String imageSrc;
+
+    @Column(nullable = false)
     private BigDecimal pawnPrice;
+
+    @Column(nullable = false)
     private ItemStatus status;
-    private UUID idBranch;
+
+    @ManyToOne
+    @JoinColumn(name = "idBranch", referencedColumnName = "idBranch")
+    private Branch branch;
 
 }
