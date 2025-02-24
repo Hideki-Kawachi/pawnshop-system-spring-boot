@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
@@ -40,4 +41,6 @@ public class Item {
     @JoinColumn(name = "idBranch", referencedColumnName = "idBranch")
     private Branch branch;
 
+    private BigDecimal sellingPrice;
+    private LocalDateTime soldDate;
 }
