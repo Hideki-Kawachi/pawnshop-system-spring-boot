@@ -7,9 +7,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class PasswordHashService {
 
-    private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    private static final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    private static final String pepper = System.getenv("PEPPER_KEY");
 
 
+//    public String hash(String password) {
+//        return passwordEncoder.encode(password + pepper);
+//    }
     public String hash(String password) {
         return passwordEncoder.encode(password);
     }
@@ -17,6 +21,7 @@ public class PasswordHashService {
 
     public Boolean isMatching(String rawPassword, String hashedPassword) {
         return passwordEncoder.matches(rawPassword,hashedPassword);
+//        return passwordEncoder.matches(rawPassword + pepper,hashedPassword);
     }
 
 
