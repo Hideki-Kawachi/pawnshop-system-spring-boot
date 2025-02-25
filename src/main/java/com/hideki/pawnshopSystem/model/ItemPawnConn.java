@@ -1,14 +1,17 @@
 package com.hideki.pawnshopSystem.model;
 
+import com.hideki.pawnshopSystem.shared.BaseDbModel;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.UUID;
 
+@EqualsAndHashCode(callSuper = false)
 @Entity
 @Data
 @Table(name = "itemPawnConn")
-public class ItemPawnConn {
+public class ItemPawnConn extends BaseDbModel {
     @Id
     @Column(name = "idItemPawnConn")
     public UUID idItemPawnConn;

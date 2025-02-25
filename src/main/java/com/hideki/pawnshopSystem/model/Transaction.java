@@ -2,17 +2,20 @@ package com.hideki.pawnshopSystem.model;
 
 
 import com.hideki.pawnshopSystem.enums.TransactionType;
+import com.hideki.pawnshopSystem.shared.BaseDbModel;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+@EqualsAndHashCode(callSuper = false)
 @Data
 @Entity
 @Table(name = "transaction")
-public class Transaction {
+public class Transaction extends BaseDbModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public UUID idTransaction;
@@ -33,15 +36,15 @@ public class Transaction {
     private Renewal renewal;
 
     @OneToOne
-    @JoinColumn(name = "idCustomer", referencedColumnName = "idUser")
+    @JoinColumn(name = "idCustomer", referencedColumnName = "idAppUser")
     private AppUser customer;
 
     @OneToOne
-    @JoinColumn(name = "idClerk", referencedColumnName = "idUser")
+    @JoinColumn(name = "idClerk", referencedColumnName = "idAppUser")
     private AppUser clerk;
 
     @OneToOne
-    @JoinColumn(name = "idBranchManager", referencedColumnName = "idUser")
+    @JoinColumn(name = "idBranchManager", referencedColumnName = "idAppUser")
     private AppUser branchManager;
 
     @ManyToOne

@@ -1,6 +1,7 @@
 package com.hideki.pawnshopSystem.service;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 public class TransactionService{
 
@@ -11,7 +12,7 @@ public class TransactionService{
     }
 
 
-    public void createPawnTransaction(BigDecimal principal, BigDecimal interest, Integer idClerk, Integer idCustomer) {
+    public void createPawnTransaction(BigDecimal principal, BigDecimal interest, UUID idClerk, UUID idCustomer) {
         BigDecimal netAmount = principal.subtract(interest).negate();
 
 
@@ -19,12 +20,12 @@ public class TransactionService{
     }
 
 
-    public void createRenewalTransaction(BigDecimal netAmount, Integer idClerk, Integer idCustomer) {
+    public void createRenewalTransaction(BigDecimal netAmount, UUID idClerk, UUID idCustomer) {
 
     }
 
 
-    public void createRedemptionTransaction(BigDecimal netAmount, Integer idClerk, Integer idCustomer) {
+    public void createRedemptionTransaction(BigDecimal netAmount, UUID idClerk, UUID idCustomer) {
 
     }
 }

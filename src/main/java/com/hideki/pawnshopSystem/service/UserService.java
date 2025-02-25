@@ -20,8 +20,18 @@ public class UserService {
     private PasswordHashService passwordHashService;
     private UserDTOMapper userDTOMapper;
 
-    public UserDTO createUser(String firstName, String middleName, String lastName, Sex sex, LocalDate birthDate, String email, String password, UserType type) {
-        return userDTOMapper.apply(userRepository.save(new AppUser(firstName, middleName, lastName, sex, birthDate, email, passwordHashService.hash(password), type)));
-    }
+//    public UserDTO createUser(String firstName, String middleName, String lastName, Sex sex, LocalDate birthDate, String email, String password, UserType type) {
+//        var newUser = AppUser.builder()
+//                .firstName(firstName)
+//                .middleName(middleName)
+//                .lastName(lastName)
+//                .sex(sex)
+//                .birthDate(birthDate)
+//                .email(email)
+//                .password(passwordHashService.hash(password))
+//                .type(type)
+//                .build();
+//        return userDTOMapper.apply(userRepository.save(newUser));
+//    }
 
 }

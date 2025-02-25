@@ -6,10 +6,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.UUID;
 
 
 @Repository
-public interface PawnRepository extends JpaRepository<Pawn, Integer> {
+public interface PawnRepository extends JpaRepository<Pawn, UUID> {
     @Query(value = "select p.pawnTicketID from pawn p order by p.idPawn desc limit 1", nativeQuery = true)
     String findLatestPawnTicketID();
 }

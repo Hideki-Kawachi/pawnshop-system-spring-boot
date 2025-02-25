@@ -1,16 +1,20 @@
 package com.hideki.pawnshopSystem.model;
 
+import com.hideki.pawnshopSystem.shared.BaseDbModel;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+@EqualsAndHashCode(callSuper = false)
 @Data
 @Entity
 @Table(name = "renewal")
-public class Renewal {
+public class Renewal extends BaseDbModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public UUID idRenewal;
@@ -24,7 +28,7 @@ public class Renewal {
     private Pawn newPawn;
 
     @Column(nullable = false)
-    private LocalDateTime renewalDate;
+    private LocalDate renewalDate;
     
     @Column(nullable = false)
     private BigDecimal payment;
@@ -44,7 +48,7 @@ public class Renewal {
     @OneToOne(mappedBy = "renewal")
     private Transaction transaction;
 
-    public Renewal(Pawn originalPawn, Pawn newPawn, LocalDateTime renewalDate, BigDecimal payment, BigDecimal interest) {
+    public Renewal(Pawn originalPawn, Pawn newPawn, LocalDate renewalDate, BigDecimal payment, BigDecimal interest) {
         this.originalPawn = originalPawn;
         this.newPawn = newPawn;
         this.renewalDate = renewalDate;

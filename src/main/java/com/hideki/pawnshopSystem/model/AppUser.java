@@ -2,11 +2,11 @@ package com.hideki.pawnshopSystem.model;
 
 import com.hideki.pawnshopSystem.enums.Sex;
 import com.hideki.pawnshopSystem.enums.UserType;
+import com.hideki.pawnshopSystem.shared.BaseDbModel;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,13 +17,14 @@ import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
+@EqualsAndHashCode(callSuper = false)
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "appUser")
-public class AppUser implements UserDetails {
+public class AppUser extends BaseDbModel implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "idAppUser")
@@ -36,34 +37,20 @@ public class AppUser implements UserDetails {
     @Column(nullable = false)
     private String lastName;
 
+    @Enumerated(EnumType.STRING)
+    private Sex sex;
+
     @Column(nullable = false)
     private LocalDate birthDate;
     private String email;
     private String password;
 
     @Enumerated(EnumType.STRING)
-    private Sex sex;
-
-    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private UserType type;
-
-    @Column(nullable = false)
-    private LocalDateTime createdOn;
     
     @Column(nullable = false)
     private Boolean isActive;
-
-    public AppUser(String firstName, String middleName, String lastName, Sex sex, LocalDate birthDate, String email, String password, UserType type) {
-        this.lastName = lastName;
-        this.firstName = firstName;
-        this.middleName = middleName;
-        this.birthDate = birthDate;
-        this.email = email;
-        this.password = password;
-        this.type = type;
-        this.sex = sex;
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 public record UserRequestDTO(
-        UUID idUser,
+        UUID idAppUser,
         String firstName,
         String middleName,
         String lastName,

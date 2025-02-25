@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/pawn")
@@ -44,7 +45,7 @@ public class PawnController {
     }
 
     @GetMapping("/get/{id}")
-    public ResponseEntity<ApiResponse<?>> getPawnByID(@PathVariable Integer id){
+    public ResponseEntity<ApiResponse<?>> getPawnByID(@PathVariable UUID id){
         try {
             Optional<Pawn> fetchedPawn = pawnService.getPawnByID(id);
             if(fetchedPawn.isEmpty()){

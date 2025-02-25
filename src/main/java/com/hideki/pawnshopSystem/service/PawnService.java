@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class PawnService{
@@ -71,7 +72,7 @@ public class PawnService{
     }
 
     
-    public Optional<Pawn> getPawnByID(Integer id) {
+    public Optional<Pawn> getPawnByID(UUID id) {
         return pawnRepository.findById(id);
     }
 }

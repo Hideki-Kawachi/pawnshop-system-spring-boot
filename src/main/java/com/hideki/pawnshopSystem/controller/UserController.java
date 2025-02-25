@@ -18,24 +18,26 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/add")
-    public ResponseEntity<?> add (@RequestBody UserRequestDTO userRequest){
-        try {
-            System.out.println("userRequest" + userRequest);
-            UserDTO newUser = userService.createUser(userRequest.firstName(),
-                    userRequest.middleName(),
-                    userRequest.lastName(),
-                    userRequest.sex(),
-                    userRequest.birthDate(),
-                    userRequest.email(),
-                    userRequest.password(),
-                    userRequest.type());
-            ApiResponse<UserDTO> response = new ApiResponse<>("Successfully created new user", newUser);
-            return ResponseEntity.status(HttpStatus.CREATED).body(response);
-        }
-        catch (Exception e){
-            ApiResponse<?> response = new ApiResponse<>("Error while creating user: " + e.getMessage());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
-        }
-    }
+//    @PostMapping("/add")
+//    public ResponseEntity<?> add (@RequestBody UserRequestDTO userRequest){
+//        try {
+//            System.out.println("userRequest" + userRequest);
+//            UserDTO newUser = userService.createUser(userRequest.firstName(),
+//                    userRequest.middleName(),
+//                    userRequest.lastName(),
+//                    userRequest.sex(),
+//                    userRequest.birthDate(),
+//                    userRequest.email(),
+//                    userRequest.password(),
+//                    userRequest.type());
+//            ApiResponse<UserDTO> response = new ApiResponse<>("Successfully created new user", newUser);
+//            return ResponseEntity.status(HttpStatus.CREATED).body(response);
+//        }
+//        catch (Exception e){
+//            ApiResponse<?> response = new ApiResponse<>("Error while creating user: " + e.getMessage());
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+//        }
+//    }
+
+
 }

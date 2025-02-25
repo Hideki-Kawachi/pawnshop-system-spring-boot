@@ -1,16 +1,20 @@
 package com.hideki.pawnshopSystem.model;
 
+import com.hideki.pawnshopSystem.shared.BaseDbModel;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+@EqualsAndHashCode(callSuper = false)
 @Data
 @Entity
 @Table(name = "redemption")
-public class Redemption {
+public class Redemption extends BaseDbModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public UUID idRedemption;
@@ -24,7 +28,7 @@ public class Redemption {
     private Pawn newPawn;
 
     @Column(nullable = false)
-    private LocalDateTime redemptionDate;
+    private LocalDate redemptionDate;
 
     @Column(nullable = false)
     private BigDecimal payment;
